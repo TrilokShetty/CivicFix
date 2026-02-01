@@ -6,12 +6,13 @@ import { MapPin, User, Search } from 'lucide-react';
 const DeptDashboard = () => {
     const [reports, setReports] = useState([]);
     const { user } = useContext(AuthContext);
+    const API_URL = import.meta.env.PROD ? '' : 'http://localhost:5000';
 
     useEffect(() => {
         const fetchReports = async () => {
             const token = localStorage.getItem('token');
             try {
-                const res = await axios.get('http://localhost:5000/api/reports/department', {
+                const res = await axios.get(`${API_URL}/api/reports/department`, {
                     headers: { 'x-auth-token': token }
                 });
                 setReports(res.data);
@@ -71,7 +72,7 @@ const DeptDashboard = () => {
                                         </td>
                                         <td className="px-6 py-4">
                                             {report.photoUrl ? (
-                                                <a href={`http://localhost:5000${report.photoUrl}`} target="_blank" rel="noreferrer" className="text-indigo-600 hover:underline">
+                                                <a href={`${API_URL}${report.photoUrl}`} target="_blank" rel="noreferrer" className="text-indigo-600 hover:underline">
                                                     View Photo
                                                 </a>
                                             ) : <span className="text-gray-400">N/A</span>}

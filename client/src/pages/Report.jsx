@@ -85,7 +85,8 @@ const Report = () => {
 
         try {
             const token = localStorage.getItem('token');
-            const res = await axios.post('http://localhost:5000/api/reports', formData, {
+            const API_URL = import.meta.env.PROD ? '' : 'http://localhost:5000';
+            const res = await axios.post(`${API_URL}/api/reports`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     'x-auth-token': token

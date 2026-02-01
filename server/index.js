@@ -16,6 +16,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Database Connection
+// Database Connection
+console.log('Attempting to connect to MongoDB...');
+console.log('MONGODB_URI defined:', !!process.env.MONGODB_URI);
+
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/civicfix')
     .then(() => console.log('MongoDB Connected'))
     .catch(err => console.error('MongoDB Connection Error:', err));

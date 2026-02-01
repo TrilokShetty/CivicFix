@@ -6,12 +6,13 @@ import { Clock, CheckCircle, AlertTriangle, MapPin } from 'lucide-react';
 const UserDashboard = () => {
     const [reports, setReports] = useState([]);
     const { user } = useContext(AuthContext);
+    const API_URL = import.meta.env.PROD ? '' : 'http://localhost:5000';
 
     useEffect(() => {
         const fetchReports = async () => {
             const token = localStorage.getItem('token');
             try {
-                const res = await axios.get('http://localhost:5000/api/reports/my', {
+                const res = await axios.get(`${API_URL}/api/reports/my`, {
                     headers: { 'x-auth-token': token }
                 });
                 setReports(res.data);
@@ -38,6 +39,7 @@ const UserDashboard = () => {
         }
     };
 
+
     return (
         <div className="pt-24 pb-10 min-h-screen max-w-screen-xl mx-auto px-4">
             <h2 className="text-3xl font-bold text-gray-800 mb-8">My Reports</h2>
@@ -52,7 +54,7 @@ const UserDashboard = () => {
                         <div key={report._id} className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition">
                             <div className="flex h-40">
                                 {report.photoUrl ? (
-                                    <img src={`http://localhost:5000${report.photoUrl}`} alt="Evidence" className="w-1/3 object-cover" />
+                                    <img src={`${API_URL}${report.photoUrl}`} alt="Evidence" className="w-1/3 object-cover" />
                                 ) : (
                                     <div className="w-1/3 bg-gray-100 flex items-center justify-center text-gray-400">No Image</div>
                                 )}
