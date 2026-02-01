@@ -1,0 +1,11 @@
+{
+    "name": "civicfix-root",
+    "version": "1.0.0",
+    "scripts": {
+        "install-all": "npm install && cd client && npm install && cd ../server && npm install",
+        "dev": "concurrently \"cd server && npm run dev\" \"cd client && npm run dev -- --port 5173\""
+    },
+    "devDependencies": {
+        "concurrently": "^8.2.2"
+    }
+}
