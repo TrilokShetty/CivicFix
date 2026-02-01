@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
+import { API_URL } from '../config';
 
 const AuthContext = createContext();
 
@@ -62,8 +63,6 @@ export const AuthProvider = ({ children }) => {
         localStorage.removeItem('user');
         setUser(null);
     };
-
-    const API_URL = 'https://civicfix-49yf.onrender.com';
 
     return (
         <AuthContext.Provider value={{ user, login, register, logout, loading }}>

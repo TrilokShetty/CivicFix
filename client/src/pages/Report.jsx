@@ -6,6 +6,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Camera, MapPin, Send, Loader2 } from 'lucide-react';
 import L from 'leaflet';
+import { API_URL } from '../config';
 
 // Fix for default marker icon in leaflet
 delete L.Icon.Default.prototype._getIconUrl;
@@ -85,7 +86,6 @@ const Report = () => {
 
         try {
             const token = localStorage.getItem('token');
-            const API_URL = import.meta.env.PROD ? '' : 'http://localhost:5000';
             const res = await axios.post(`${API_URL}/api/reports`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',

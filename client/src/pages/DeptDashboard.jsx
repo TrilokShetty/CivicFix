@@ -2,11 +2,11 @@ import { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import AuthContext from '../context/AuthContext';
 import { MapPin, User, Search } from 'lucide-react';
+import { API_URL } from '../config';
 
 const DeptDashboard = () => {
     const [reports, setReports] = useState([]);
     const { user } = useContext(AuthContext);
-    const API_URL = import.meta.env.PROD ? '' : 'http://localhost:5000';
 
     useEffect(() => {
         const fetchReports = async () => {
